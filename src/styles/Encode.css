@@ -1,0 +1,277 @@
+/* ------------------------------------------------
+   MAIN CONTAINER
+-------------------------------------------------- */
+.encode-container {
+    max-width: 900px;
+    margin: 120px auto 60px auto;
+    padding: 32px 28px;
+    border-radius: 24px;
+    background: radial-gradient(circle at top left, rgba(47, 214, 255, 0.18), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(199, 69, 231, 0.18), transparent 55%),
+                rgba(6, 12, 30, 0.92);
+    border: 1px solid rgba(47, 214, 255, 0.4);
+    box-shadow: 0 0 35px rgba(0,0,0,0.8), 0 0 40px rgba(47,214,255,0.18);
+    backdrop-filter: blur(12px);
+    color: #e5f5ff;
+}
+
+/* ------------------------------------------------
+   TITLE
+-------------------------------------------------- */
+.encode-container h2 {
+    font-family: "Orbitron", system-ui, sans-serif;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    width: max-content;
+    margin-inline: auto;
+    background: linear-gradient(90deg, #2FD6FF, #7A6BF1, #FF2DC6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ------------------------------------------------
+   FORM STRUCTURE
+-------------------------------------------------- */
+.encode-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.encode-form label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #9ad5ff;
+}
+
+/* ------------------------------------------------
+   CUSTOM UPLOAD BUTTON
+-------------------------------------------------- */
+
+.upload-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(10, 22, 46, 0.7);
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(47, 214, 255, 0.4);
+    backdrop-filter: blur(6px);
+}
+
+/* Hide real input */
+.upload-box input[type="file"] {
+    display: none;
+}
+
+/* The glowing "Choose Image" button */
+.upload-btn, .download-button {
+    padding: 8px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+
+    background: linear-gradient(120deg, #2FD6FF, #7A6BF1, #FF2DC6);
+    background-size: 240% 240%;
+
+    font-family: "Orbitron", system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: #080d18;
+
+    box-shadow: 0 0 12px rgba(47, 214, 255, 0.55);
+    transition: 0.25s ease;
+}
+
+.upload-btn, .download-button:hover {
+    transform: translateY(-2px);
+    background-position: 100% 0%;
+    box-shadow: 0 0 22px rgba(255, 45, 198, 0.8);
+}
+
+/* File name text */
+.file-name {
+    color: #b6dcff;
+    font-size: 0.9rem;
+}
+
+/* ------------------------------------------------
+   IMAGE PREVIEW
+-------------------------------------------------- */
+.upload-preview {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.upload-preview img {
+    width: 260px;
+    border-radius: 16px;
+    border: 1px solid rgba(47,214,255,0.6);
+    box-shadow: 0 0 24px rgba(47,214,255,0.6);
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ------------------------------------------------
+   TEXTAREA + PASSWORD BASE STYLE
+-------------------------------------------------- */
+.encode-form textarea,
+.encode-form .styled-input {
+    width: 100%;  /* <-- FIXED WIDTH ISSUE */
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(68, 140, 255, 0.6);
+    background: rgba(5, 12, 30, 0.95);
+    color: #e5f5ff;
+    min-height: 90px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: 0.2s;
+    box-sizing: border-box; /* <-- PREVENT WIDTH SHRINK */
+}
+
+/* Focus effect */
+.encode-form textarea:focus,
+.encode-form .styled-input:focus {
+    border-color: #2FD6FF;
+    box-shadow: 0 0 12px rgba(47,214,255,0.6);
+}
+
+/* ------------------------------------------------
+   ENCODE BUTTON
+-------------------------------------------------- */
+.encode-form button {
+    padding: 10px 32px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+
+    font-family: "Orbitron", system-ui, sans-serif;
+    text-transform: uppercase;
+
+    background: linear-gradient(120deg, #2FD6FF, #7A6BF1, #FF2DC6);
+    background-size: 240% 240%;
+    color: #0b1220;
+
+    box-shadow: 0 0 18px rgba(43,208,255,0.7);
+    transition: 0.25s ease;
+}
+
+.encode-form button:hover {
+    transform: translateY(-2px);
+    background-position: 100% 0%;
+    box-shadow: 0 0 26px rgba(255,45,198,0.8);
+}
+
+/* ------------------------------------------------
+   RESULT SECTION
+-------------------------------------------------- */
+.result-section {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(7, 16, 40, 0.96);
+    border: 1px solid rgba(122,107,241,0.55);
+    text-align: center;
+}
+
+.stego-preview {
+    width: 260px;
+    border-radius: 18px;
+    border: 1px solid rgba(47,214,255,0.6);
+    box-shadow: 0 0 22px rgba(47,214,255,0.7);
+    margin-bottom: 12px;
+}
+
+/* ------------------------------------------------
+   RESPONSIVE
+-------------------------------------------------- */
+@media (max-width: 768px) {
+    .encode-container {
+        margin: 90px 16px 40px 16px;
+        padding: 22px;
+    }
+}
+
+/* ------------------------------------------------
+   NEW — EYE ICON + TEXTAREA MASKING SUPPORT
+-------------------------------------------------- */
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* TEXTAREA FULL-WIDTH FIX */
+.textarea-wrapper {
+    width: 100%;
+    display: block;
+}
+
+.textarea-wrapper textarea {
+    width: 100% !important;  /* <-- FIXED WIDTH */
+    box-sizing: border-box;  /* <-- PREVENT SHRINK */
+    padding-right: 48px !important; 
+    line-height: 1.45;
+    min-height: 110px;
+}
+
+/* Eye Icon */
+.toggle-eye {
+    position: absolute;
+    right: 16px;  /* adjusted for full width */
+    top: 16px;
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0.85;
+    color: #d4e8ff;
+    transition: 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-eye:hover {
+    opacity: 1;
+    transform: scale(1.12);
+}
+
+.styled-input {
+    width: 100%;
+    padding-right: 48px;
+}
+
+/* Mobile refinements */
+@media (max-width: 768px) {
+    .toggle-eye {
+        right: 12px;
+        top: 12px;
+        font-size: 20px;
+    }
+
+    .textarea-wrapper textarea {
+        padding-right: 42px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .toggle-eye {
+        right: 10px;
+        top: 10px;
+        font-size: 18px;
+    }
+
+    .textarea-wrapper textarea {
+        padding-right: 38px !important;
+    }
+}
+
+/* Error text */
+.error-inline {
+    color: #ffb3c8;
+    margin-top: 10px;
+}

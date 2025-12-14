@@ -1,0 +1,10 @@
+.digital-rain-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;          /* place above all page content */
+  pointer-events: none;  /* rain doesn’t block clicks */
+  opacity: 0.2;
+  
+}

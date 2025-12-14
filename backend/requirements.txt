@@ -1,0 +1,35 @@
+fastapi==0.110.0
+uvicorn==0.29.0
+
+pillow==10.2.0
+numpy==1.26.4
+opencv-python==4.9.0.80
+
+torch==2.2.0
+torchvision==0.17.0
+
+cryptography==42.0.2
+
+python-multipart==0.0.9
+
+# Steganography + Image Processing
+pillow==10.2.0
+
+# Password hashing
+passlib==1.7.4
+bcrypt==4.1.2
+
+# JWT Authentication
+PyJWT==2.8.0
+
+# Email validation
+email-validator==2.1.1
+
+# Environment variable loader
+python-dotenv==1.0.1
+
+# MongoDB (Motor async driver)
+motor==3.3.2
+
+# Optional: prevent YAML errors in FastAPI
+pyyaml==6.0.1

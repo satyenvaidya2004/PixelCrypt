@@ -1,0 +1,82 @@
+/* ===== FORGOT PASSWORD PAGE CSS ===== */
+
+.forgot-container {
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#060c1e;
+  padding:20px;
+}
+
+.forgot-form {
+  width:100%;
+  max-width:420px;
+  padding:32px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.05);
+}
+
+.forgot-form h2 {
+  text-align:center;
+  font-family:"Orbitron";
+  background:linear-gradient(90deg,#2FD6FF,#7A6BF1,#FF2DC6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.forgot-input {
+  display:flex;
+  align-items:center;
+  padding:10px 14px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.08);
+  margin-top:16px;
+}
+
+.forgot-input input {
+  width:100%;
+  background:none;
+  border:none;
+  outline:none;
+  margin-left:10px;
+  font-size:1rem;
+  color:white;
+}
+
+.forgot-icon {
+  font-size:1.2rem;
+}
+
+.forgot-btn {
+  width:100%;
+  margin-top:18px;
+  padding:12px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  font-family:"Orbitron";
+  background:linear-gradient(120deg,#FF2DC6,#7A6BF1,#2FD6FF);
+}
+
+.forgot-msg {
+  margin-top:16px;
+  padding:12px;
+  background:rgba(255,45,90,0.2);
+  border-left:3px solid #FF2DC6;
+  border-radius:12px;
+  color:white;
+}
+
+.forgot-actions {
+  text-align:center;
+  margin-top:16px;
+}
+
+.forgot-actions button {
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-decoration:underline;
+  color:#9bd5ff;
+}

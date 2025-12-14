@@ -1,0 +1,91 @@
+/* ===== LOGIN PAGE CSS (no conflicts) ===== */
+
+.login-container {
+  min-height: 100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#060c1e;
+  padding:20px;
+}
+
+.login-form {
+  width:100%;
+  max-width:420px;
+  background:rgba(255,255,255,0.05);
+  border-radius:20px;
+  padding:32px;
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.login-form h2 {
+  text-align:center;
+  font-family:"Orbitron";
+  text-transform:uppercase;
+  background:linear-gradient(90deg,#2FD6FF,#7A6BF1,#FF2DC6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.login-input {
+  display:flex;
+  align-items:center;
+  padding:10px 14px;
+  border-radius:12px;
+  margin-top:16px;
+  background:rgba(255,255,255,0.08);
+}
+
+.login-input input {
+  width:100%;
+  background:none;
+  border:none;
+  font-size:1rem;
+  outline:none;
+  margin-left:10px;
+  color:white;
+}
+
+.login-icon {
+  font-size:1.2rem;
+  opacity:0.8;
+}
+
+.login-eye {
+  margin-left:8px;
+  cursor:pointer;
+}
+
+.login-btn {
+  width:100%;
+  margin-top:18px;
+  padding:12px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  background:linear-gradient(120deg,#FF2DC6,#7A6BF1,#2FD6FF);
+  background-size:250% 250%;
+  font-family:"Orbitron";
+}
+
+.login-actions {
+  margin-top:16px;
+  text-align:center;
+}
+
+.login-actions button {
+  background:none;
+  border:none;
+  cursor:pointer;
+  color:#8ad1ff;
+  text-decoration:underline;
+}
+
+.login-msg {
+  margin-top:16px;
+  padding:12px;
+  background:rgba(255,45,90,0.2);
+  border-left:3px solid #FF2DC6;
+  border-radius:12px;
+  color:white;
+}

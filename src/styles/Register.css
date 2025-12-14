@@ -1,0 +1,87 @@
+/* ===== REGISTER PAGE CSS ===== */
+
+.register-container {
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#060c1e;
+  padding:20px;
+}
+
+.register-form {
+  width:100%;
+  max-width:420px;
+  padding:32px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.05);
+}
+
+.register-form h2 {
+  text-align:center;
+  font-family:"Orbitron";
+  background:linear-gradient(90deg,#FF2DC6,#7A6BF1,#2FD6FF);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.register-input {
+  display:flex;
+  align-items:center;
+  margin-top:16px;
+  background:rgba(255,255,255,0.08);
+  padding:10px 14px;
+  border-radius:12px;
+}
+
+.register-input input {
+  width:100%;
+  border:none;
+  outline:none;
+  background:none;
+  font-size:1rem;
+  color:white;
+  margin-left:10px;
+}
+
+.register-icon {
+  font-size:1.2rem;
+}
+
+.register-eye {
+  margin-left:8px;
+  cursor:pointer;
+}
+
+.register-btn {
+  width:100%;
+  margin-top:18px;
+  padding:12px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  font-family:"Orbitron";
+  background:linear-gradient(120deg,#FF2DC6,#7A6BF1,#2FD6FF);
+}
+
+.register-msg {
+  margin-top:16px;
+  padding:12px;
+  border-left:3px solid #FF2DC6;
+  background:rgba(255,45,90,0.2);
+  border-radius:12px;
+  color:white;
+}
+
+.register-actions {
+  margin-top:16px;
+  text-align:center;
+}
+
+.register-actions button {
+  background:none;
+  border:none;
+  color:#9bd5ff;
+  text-decoration:underline;
+  cursor:pointer;
+}

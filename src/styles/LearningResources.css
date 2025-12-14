@@ -1,0 +1,125 @@
+.learning-resources {
+  padding: 6rem 2rem;
+  background: #050510;
+  position: relative;
+}
+
+.learning-resources::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.learning-resources-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.learning-resources-content {
+  animation: fadeInLeft 1s ease-out;
+}
+
+.learning-resources-title {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.learning-resources-description {
+  font-size: 1.2rem;
+  color: #b0b0b0;
+  line-height: 1.8;
+  margin: 0 0 2rem 0;
+}
+
+.resources-cta {
+  margin-top: 2rem;
+}
+
+.resources-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(0, 255, 150, 0.2) 100%);
+  border: 2px solid #00ff96;
+  color: #00ff96;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 150, 0.3);
+}
+
+.resources-button:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.3) 0%, rgba(0, 255, 150, 0.3) 100%);
+  box-shadow: 0 0 30px rgba(0, 255, 150, 0.5),
+              0 0 50px rgba(0, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.learning-resources-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInRight 1s ease-out;
+}
+
+.resources-icon {
+  font-size: 8rem;
+  filter: drop-shadow(0 0 30px rgba(0, 255, 150, 0.6))
+          drop-shadow(0 0 60px rgba(0, 255, 255, 0.4));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 968px) {
+  .learning-resources-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .learning-resources-title {
+    font-size: 2.5rem;
+  }
+
+  .resources-icon {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 568px) {
+  .learning-resources-title {
+    font-size: 2rem;
+  }
+
+  .learning-resources-description {
+    font-size: 1rem;
+  }
+}
+

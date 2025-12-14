@@ -1,0 +1,139 @@
+.labs {
+  padding: 3rem 2rem;
+  background: #050510;
+  position: relative;
+}
+
+.labs-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.labs-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.labs-title {
+  font-size: 3rem;
+  margin: -2rem auto 1rem auto;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-align: center;
+  width: fit-content;
+  background: linear-gradient(90deg, #00ffff, #7A6BF1, #FF2DC6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.labs-subtitle {
+  font-size: 1.2rem;
+  color: #b0b0b0;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.labs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.lab-card {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(0, 255, 150, 0.05) 100%);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.lab-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 255, 150, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lab-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 255, 255, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 255, 255, 0.2),
+    0 0 30px rgba(0, 255, 150, 0.1);
+}
+
+.lab-card:hover::before {
+  opacity: 1;
+}
+
+.lab-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+  position: relative;
+  z-index: 1;
+}
+
+.lab-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #00ffff;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.lab-description {
+  font-size: 1rem;
+  color: #b0b0b0;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.lab-link {
+  display: inline-block;
+  color: #00ff96;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.lab-link:hover {
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  .labs-title {
+    font-size: 2.5rem;
+  }
+
+  .labs-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .labs-grid {
+    grid-template-columns: 1fr;
+  }
+}

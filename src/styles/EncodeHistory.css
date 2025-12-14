@@ -1,0 +1,162 @@
+/* =========================
+   TABLE LAYOUT
+========================= */
+.table {
+  max-width: 1300px;
+  margin: 120px auto;
+  color: #e5f5ff;
+}
+
+.thead,
+.trow {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1.2fr 1.5fr 1fr 1.8fr 1fr;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.thead {
+  font-weight: 600;
+  opacity: 0.9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding-bottom: 12px;
+}
+
+/* =========================
+   ROW STYLE
+========================= */
+.trow {
+  background: rgba(8, 14, 30, 0.95);
+  padding: 18px 16px;
+  border-radius: 18px;
+  margin-top: 14px;
+  transition: background 0.3s ease;
+}
+
+.trow:hover {
+  background: rgba(10, 18, 38, 0.98);
+}
+
+/* =========================
+   IMAGE CELL
+========================= */
+.img-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.img-cell img {
+  width: 92px;
+  height: 62px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: filter 0.45s ease, transform 0.3s ease;
+}
+
+.img-cell img:hover {
+  transform: scale(1.03);
+}
+
+/* Blur states */
+.no-blur {
+  filter: none;
+}
+
+.blur {
+  filter: blur(7px);
+}
+
+.unblur {
+  filter: blur(0);
+}
+
+/* =========================
+   DOWNLOAD ICON
+========================= */
+.download {
+  color: #2fd6ff;
+  cursor: pointer;
+  font-size: 1.15rem;
+  animation: slideFade 0.35s ease forwards;
+}
+
+.download:hover {
+  color: #5ce1ff;
+}
+
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   CREATED COLUMN
+========================= */
+.created {
+  line-height: 1.45;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Eye button */
+.eye {
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: #e5f5ff;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.eye:hover {
+  transform: scale(1.2);
+  color: #2fd6ff;
+}
+
+/* Active eye (eye-slash state) */
+.eye.active {
+  color: #ff6b6b;
+  transform: rotate(180deg);
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
+}
+
+/* Trash button */
+.trash {
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #ff6b6b;
+  animation: fadeInScale 0.3s ease forwards;
+}
+
+.trash:hover {
+  color: #ff8896;
+}
+
+/* Trash animation */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

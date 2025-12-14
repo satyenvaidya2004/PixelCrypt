@@ -1,0 +1,314 @@
+/* =========================================================
+    MAIN NAVBAR WRAPPER
+========================================================= */
+.navbar {
+    background: #050A1A;
+    border-top: 1px solid #2a2f45;
+    box-shadow:
+        0 0 20px rgba(0, 255, 255, 0.1),
+        0 0 40px rgba(0, 255, 200, 0.05);
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+
+.navbar.fixed {
+    position: fixed;
+}
+
+/* =========================================================
+    NAVBAR CONTAINER
+========================================================= */
+.navbar-container {
+    max-width: 1400px;
+    margin: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================================
+    BRAND LOGO & TEXT
+========================================================= */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-logo {
+    height: 45px;
+    width: auto;
+}
+
+.navbar-brand-name {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.brand-encdec {
+    color: rgb(0, 216, 255);
+}
+
+.brand-lab {
+    color: rgb(0, 255, 170);
+}
+
+/* =========================================================
+    DESKTOP MENU
+========================================================= */
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-item {
+    position: relative;
+}
+
+.navbar-link {
+    display: flex;
+    align-items: center;
+    padding: 0.9rem 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navbar-link:hover {
+    background: rgba(0, 255, 255, 0.089);
+}
+
+.navbar-link.active {
+    background: #25deff26;
+    color: #25defff7;
+    box-shadow:
+        0 0 8px rgba(0, 255, 255, 0.2),
+        inset 0 0 8px rgba(0, 255, 255, 0.1);
+}
+
+/* Login button inherits active styling */
+.login {
+    background: #25deff26;
+    color: #25defff7;
+    border-radius: 6px;
+}
+
+/* =========================================================
+    DROPDOWN (USER PROFILE)
+========================================================= */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+}
+
+.arrow {
+    transition: transform 0.25s ease;
+}
+
+/* Arrow flips when menu open or hovered */
+.dropdown:hover .arrow,
+.dropdown.open .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 220px;
+    padding: 0.55rem 0;
+    list-style: none;
+    background: #050A1A;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 255, 0.35);
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: 0.22s;
+    z-index: 9999;
+}
+
+/* Show dropdown */
+.dropdown:hover .dropdown-menu,
+.dropdown.open .dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Dropdown item */
+.dropdown-menu a {
+    display: block;
+    padding: 0.9rem 0rem 0.9rem 1.3rem;
+    font-size: 0.97rem;
+    color: #e4ffff;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: 0.18s;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(0, 255, 255, 0.08);
+}
+
+.dropdown-menu a.active {
+    background: #25deff26;
+    color: #25defff7;
+    border-radius: 6px;
+}
+
+.logout-button {
+    cursor: pointer;
+}
+
+/* =========================================================
+    HAMBURGER MENU
+========================================================= */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 10001;
+}
+
+.menu-bar {
+    width: 22px;
+    height: 4px;
+    margin: 4px 0;
+    border-radius: 2px;
+    background-color: rgb(0, 216, 255);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Turns into X */
+.menu-toggle.open .menu-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.open .menu-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open .menu-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =========================================================
+    OVERLAY WHEN MOBILE MENU OPEN
+========================================================= */
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9998 !important;
+}
+
+/* =========================================================
+    MOBILE MENU (DRAWER)
+========================================================= */
+@media (max-width: 768px) {
+    .navbar-container {
+        padding: 0.75rem 1.25rem;
+        margin: 0 10px;
+    }
+
+    .menu-toggle {
+        display: block !important;
+    }
+
+    .navbar-menu {
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 60%;
+        height: 100vh;
+        padding-top: 6rem;
+        padding-inline: 1.5rem;
+        background: #050A1A !important;
+        z-index: 10000 !important;
+        gap: 0.75rem;
+        align-items: flex-start;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.25s ease;
+    }
+
+    .navbar-menu.open {
+        transform: translateX(0);
+    }
+
+    .navbar-menu li {
+        width: 100%;
+        text-align: left;
+        font-size: 1.05rem;
+    }
+
+    .navbar-link {
+        width: 100%;
+    }
+
+    /* Mobile dropdown collapsed */
+    .dropdown-menu {
+        position: static;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        background: transparent;
+        border: none;
+        transition: 0.25s ease;
+    }
+
+    .dropdown.open .dropdown-menu {
+        opacity: 1;
+        height: auto;
+        padding-top: 0.35rem;
+        pointer-events: auto;
+    }
+
+    /* Arrow reset for mobile */
+    .dropdown .arrow {
+        transform: rotate(0deg) !important;
+    }
+
+    .dropdown.open .arrow {
+        transform: rotate(180deg) !important;
+    }
+
+    /* Animation */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
