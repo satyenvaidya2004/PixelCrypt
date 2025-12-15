@@ -54,7 +54,6 @@ async def encode(
 
 
 # ---------------------- DECODE ----------------------
-# ---------------------- DECODE ----------------------
 @router.post("/decode")
 async def decode(
     file: UploadFile = File(...),

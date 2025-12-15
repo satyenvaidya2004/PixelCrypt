@@ -7,10 +7,14 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-// Auth Pages (separated)
+// Auth Pages
 import LoginPage from "./components/Login";
 import RegisterPage from "./components/Register";
 import ForgotPasswordPage from "./components/Forgot";
+
+// 🔐 NEW OTP PAGES
+import VerifyRegisterOTP from "./components/VerifyRegisterOTP";
+import ResetPassword from "./components/ResetPassword";
 
 // Home Page Sections
 import Hero from "./components/Hero";
@@ -59,10 +63,13 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot" element={<ForgotPasswordPage />} />
 
+          {/* 🔐 OTP ROUTES */}
+          <Route path="/verify-register" element={<VerifyRegisterOTP />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+
           {/* History Pages */}
           <Route path="/encode-history" element={<EncodeHistory />} />
           <Route path="/decode-history" element={<DecodeHistory />} />
-
 
           {/* About */}
           <Route path="/about" element={<About />} />

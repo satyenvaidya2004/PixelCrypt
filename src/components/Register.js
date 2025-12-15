@@ -18,26 +18,56 @@ export default function Register() {
   const [showPwd, setShowPwd] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [msg, setMsg] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const isValidEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+  // --------------------------------------------------
+  // REGISTER → SEND OTP
+  // --------------------------------------------------
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (!form.name.trim()) return setMsg("Name is required.");
-    if (!isValidEmail(form.email)) return setMsg("Invalid email.");
+    setMsg(null);
+
+    if (!form.name.trim())
+      return setMsg("Name is required.");
+
+    if (!isValidEmail(form.email))
+      return setMsg("Invalid email address.");
+
     if (form.password.length < 6)
       return setMsg("Password must be at least 6 characters.");
+
     if (form.password !== form.confirm)
       return setMsg("Passwords do not match.");
 
     try {
+      setLoading(true);
+
+      // 🔐 Sends OTP (backend does NOT create user yet)
       await register(form.name, form.email, form.password);
-      setMsg("Registration successful!");
-      setTimeout(() => navigate("/login"), 1200);
+
+      // 👉 Go to OTP verification screen
+      navigate("/verify-register", {
+        state: {
+          name: form.name,
+          email: form.email,
+          password: form.password
+        }
+      });
+
     } catch (err) {
-      setMsg(err.message || "Registration failed");
+      const backendMessage =
+        err?.response?.data?.detail ||
+        err?.response?.data?.message ||
+        "Failed to send OTP. Please try again.";
+
+      setMsg(backendMessage);
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -112,7 +142,13 @@ export default function Register() {
           </span>
         </div>
 
-        <button type="submit" className="register-btn">Register</button>
+        <button
+          type="submit"
+          className="register-btn"
+          disabled={loading}
+        >
+          {loading ? "Sending OTP..." : "Send OTP"}
+        </button>
 
         {msg && <div className="register-msg">{msg}</div>}
 

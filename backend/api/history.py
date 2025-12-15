@@ -15,7 +15,8 @@ def oid(x: str) -> ObjectId:
     try:
         return ObjectId(x)
     except Exception:
-        raise HTTPException(status_code=400, detail="Invalid ID")
+        raise HTTPException(status_code=400, detail="The selected record is invalid or no longer exists.")
+
 
 
 # ---------------- IMAGE STREAM ----------------
@@ -37,11 +38,6 @@ def stream_image(
         media_type=grid_out.content_type,
         headers=headers,
     )
-
-
-# =========================================================
-# ===================== ENCODE ============================
-# =========================================================
 
 # ---------------- ENCODE LIST ----------------
 @router.get("/encode/list")
@@ -81,23 +77,19 @@ def view_encode_details(
     })
 
     if not doc:
-        raise HTTPException(status_code=404, detail="Record not found")
+        raise HTTPException(status_code=404, detail="This record was deleted or does not belong to your account.")
+
 
     try:
         real_password = decrypt_message(doc["password"], password)
         message = decrypt_message(doc["message"], password)
     except Exception:
-        raise HTTPException(status_code=400, detail="Incorrect password")
+        raise HTTPException(status_code=400, detail="The password you entered is incorrect. Please try again.")
 
     return {
         "message": message,
         "password": real_password,
     }
-
-
-# =========================================================
-# ===================== DECODE ============================
-# =========================================================
 
 # ---------------- DECODE LIST ----------------
 @router.get("/decode/list")
@@ -136,13 +128,15 @@ def view_decode_details(
     })
 
     if not doc:
-        raise HTTPException(status_code=404, detail="Record not found")
+        raise HTTPException(status_code=404, detail="This record was deleted or does not belong to your account.")
+
 
     try:
         real_password = decrypt_message(doc["password"], password)
         message = decrypt_message(doc["message"], password)
     except Exception:
-        raise HTTPException(status_code=400, detail="Incorrect password")
+        raise HTTPException(status_code=400, detail="The password you entered is incorrect. Please try again.")
+
 
     return {
         "message": message,
@@ -164,7 +158,8 @@ def delete_encode_history(
     )
 
     if result.matched_count == 0:
-        raise HTTPException(status_code=404, detail="Record not found")
+        raise HTTPException(status_code=404, detail="This record was deleted or does not belong to your account.")
+
 
     return {"success": True}
 
@@ -184,6 +179,7 @@ def delete_decode_history(
     )
 
     if result.matched_count == 0:
-        raise HTTPException(status_code=404, detail="Record not found")
+        raise HTTPException(status_code=404, detail="This record was deleted or does not belong to your account.")
+
 
     return {"success": True}

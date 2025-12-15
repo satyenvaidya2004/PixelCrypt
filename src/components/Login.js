@@ -31,8 +31,14 @@ export default function Login() {
       // navigate("/");
 
     } catch (err) {
-      setMsg(err.message || "Login failed");
+      const backendMessage =
+        err?.response?.data?.detail ||
+        err?.response?.data?.message ||
+        "Login failed. Please try again.";
+
+      setMsg(backendMessage);
     }
+
   };
 
   return (

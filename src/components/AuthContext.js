@@ -14,9 +14,6 @@ export const AuthProvider = ({ children }) => {
     }
   });
 
-  // ----------------------------------------------------
-  // Apply token to axios (NO API CALL HERE)
-  // ----------------------------------------------------
   useEffect(() => {
     if (token) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -28,38 +25,46 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  // ----------------------------------------------------
-  // Validate token ONLY ONCE (SAFE)
-  // ----------------------------------------------------
   useEffect(() => {
     if (!token || user) return;
-
-    let cancelled = false;
-
     api.get("/api/auth/me")
       .then(res => {
-        if (!cancelled && res.data?.user) {
-          setUser(res.data.user);
-          localStorage.setItem("user", JSON.stringify(res.data.user));
-        }
+        setUser(res.data.user);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
       })
       .catch(() => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
         setToken(null);
         setUser(null);
       });
+  }, [token]);
 
-    return () => { cancelled = true; };
-  }, [token]);   // 🔑 DEPENDS ON token, NOT empty []
+  // ---------------- REGISTER (SEND OTP)
+  const register = async (name, email, password) => {
+    const res = await api.post("/api/auth/register", { name, email, password });
+    if (!res.data.ok) throw new Error(res.data.detail || "OTP failed");
+  };
 
-  // ----------------------------------------------------
-  // LOGIN
-  // ----------------------------------------------------
+  // ---------------- VERIFY REGISTER OTP
+  const verifyRegisterOTP = async (payload) => {
+    const res = await api.post("/api/auth/verify-register-otp", payload);
+    if (!res.data.ok) throw new Error("OTP verification failed");
+  };
+
+  // ---------------- FORGOT PASSWORD (SEND OTP)
+  const forgot = async (email) => {
+    await api.post("/api/auth/forgot", { email });
+  };
+
+  // ---------------- RESET PASSWORD
+  const resetPassword = async (payload) => {
+    const res = await api.post("/api/auth/reset-password", payload);
+    if (!res.data.ok) throw new Error("Reset failed");
+  };
+
+  // ---------------- LOGIN
   const login = async (email, password) => {
     const res = await api.post("/api/auth/login", { email, password });
-
-    if (res.data?.ok) {
+    if (res.data.ok) {
       setToken(res.data.token);
       setUser(res.data.user);
       localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -67,21 +72,23 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // ----------------------------------------------------
-  // LOGOUT
-  // ----------------------------------------------------
+  // ---------------- LOGOUT
   const logout = async () => {
-    try {
-      await api.post("/api/auth/logout");
-    } catch {}
-
+    try { await api.post("/api/auth/logout"); } catch {}
     setToken(null);
     setUser(null);
     window.location.href = "/login";
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, login, logout }}>
+    <AuthContext.Provider value={{
+      token, user,
+      login, logout,
+      register,
+      verifyRegisterOTP,
+      forgot,
+      resetPassword
+    }}>
       {children}
     </AuthContext.Provider>
   );

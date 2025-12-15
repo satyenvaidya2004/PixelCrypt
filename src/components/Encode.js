@@ -1,5 +1,6 @@
 // src/components/Encode.js
 import React, { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "../utils/api";
 import "../styles/Encode.css";
 import LoadingOverlay from "./LoadingOverlay";
@@ -9,7 +10,14 @@ const ALLOWED_EXTENSIONS = ["jpg", "jpeg"];
 const LAST_CHAR_MASK_MS = 2500; // milliseconds before last visible char gets masked
 
 function Encode() {
-  // file / UI states
+  const navigate = useNavigate();
+
+  // ---------------- AUTH CHECK ----------------
+  const isLoggedIn = () => {
+    return !!localStorage.getItem("token");
+  };
+
+  // ---------------- FILE / UI STATES ----------------
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
@@ -18,23 +26,24 @@ function Encode() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // message & password state (real values)
+  // ---------------- MESSAGE & PASSWORD ----------------
   const [message, setMessage] = useState("");
   const [password, setPassword] = useState("");
 
-  // masking and visibility states
-  const [showMessage, setShowMessage] = useState(false); // eye toggle for message
-  const [showPassword, setShowPassword] = useState(false); // eye toggle for password
-  const [revealedIndex, setRevealedIndex] = useState(-1); // index of the currently revealed char
+  // ---------------- MASKING STATES ----------------
+  const [showMessage, setShowMessage] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [revealedIndex, setRevealedIndex] = useState(-1);
   const revealTimer = useRef(null);
 
-  // textarea ref to control caret/selection
+  // textarea ref
   const taRef = useRef(null);
 
-  // --- File handling ---
+  // ---------------- FILE HANDLING ----------------
   const handleFileChange = (e) => {
     const img = e.target.files?.[0];
     if (!img) return;
+
     const ext = img.name.split(".").pop()?.toLowerCase() || "";
     if (!ALLOWED_EXTENSIONS.includes(ext)) {
       setError("Only JPG/JPEG images are supported for DCT steganography.");
@@ -44,6 +53,7 @@ function Encode() {
       setDownloadName("encoded_image.jpg");
       return;
     }
+
     setFile(img);
     setFileName(img.name);
     setPreviewImage(URL.createObjectURL(img));
@@ -51,30 +61,26 @@ function Encode() {
     setError("");
   };
 
-  // --- Masking helpers ---
-  // compute what to show in textarea
+  // ---------------- MASKING HELPERS ----------------
   const getDisplayValue = () => {
     if (showMessage) return message;
     if (!message) return "";
-    // if revealedIndex is -1 show all masked
+
     const arr = [];
     for (let i = 0; i < message.length; i++) {
-      if (i === revealedIndex) arr.push(message[i]);
-      else arr.push("*");
+      arr.push(i === revealedIndex ? message[i] : "*");
     }
     return arr.join("");
   };
 
-  // schedule masking of last revealed char
   const scheduleMasking = (index) => {
-    if (revealTimer.current) {
-      clearTimeout(revealTimer.current);
-      revealTimer.current = null;
-    }
+    if (revealTimer.current) clearTimeout(revealTimer.current);
+
     if (index < 0) {
       setRevealedIndex(-1);
       return;
     }
+
     setRevealedIndex(index);
     revealTimer.current = setTimeout(() => {
       setRevealedIndex(-1);
@@ -84,131 +90,91 @@ function Encode() {
 
   useEffect(() => {
     return () => {
-      if (revealTimer.current) {
-        clearTimeout(revealTimer.current);
-      }
+      if (revealTimer.current) clearTimeout(revealTimer.current);
     };
   }, []);
 
-  // caret helpers: set caret to position in textarea after updating display
+  // ---------------- CARET HELPERS ----------------
   const setCaret = (pos) => {
     const ta = taRef.current;
     if (!ta) return;
     try {
       ta.setSelectionRange(pos, pos);
       ta.focus();
-    } catch (e) {
-      // ignore
-    }
+    } catch {}
   };
 
-  // Insert text (text can be single char or multi-char)
-  const insertAt = (insertText, selectionStart, selectionEnd) => {
-    // selectionStart..selectionEnd replaced
-    const before = message.slice(0, selectionStart);
-    const after = message.slice(selectionEnd);
-    const newMsg = before + insertText + after;
-    const newIdx = before.length + insertText.length - 1; // index of last typed char
+  const insertAt = (text, start, end) => {
+    const before = message.slice(0, start);
+    const after = message.slice(end);
+    const newMsg = before + text + after;
     setMessage(newMsg);
-    scheduleMasking(newIdx);
-    // update caret after DOM update
-    setTimeout(() => setCaret(before.length + insertText.length), 0);
+    scheduleMasking(before.length + text.length - 1);
+    setTimeout(() => setCaret(before.length + text.length), 0);
   };
 
-  const removeAt = (isBackspace, selectionStart, selectionEnd) => {
-    // if selection has range, remove that
-    if (selectionStart !== selectionEnd) {
-      const before = message.slice(0, selectionStart);
-      const after = message.slice(selectionEnd);
-      const newMsg = before + after;
-      setMessage(newMsg);
-      setRevealedIndex(-1);
-      setTimeout(() => setCaret(selectionStart), 0);
+  const removeAt = (isBackspace, start, end) => {
+    if (start !== end) {
+      setMessage(message.slice(0, start) + message.slice(end));
+      setTimeout(() => setCaret(start), 0);
       return;
     }
 
-    if (isBackspace) {
-      // remove char before caret
-      if (selectionStart === 0) return;
-      const before = message.slice(0, selectionStart - 1);
-      const after = message.slice(selectionStart);
-      const newMsg = before + after;
-      setMessage(newMsg);
-      setRevealedIndex(-1);
-      setTimeout(() => setCaret(selectionStart - 1), 0);
-    } else {
-      // Delete key: remove char at caret
-      if (selectionStart >= message.length) return;
-      const before = message.slice(0, selectionStart);
-      const after = message.slice(selectionStart + 1);
-      const newMsg = before + after;
-      setMessage(newMsg);
-      setRevealedIndex(-1);
-      setTimeout(() => setCaret(selectionStart), 0);
+    if (isBackspace && start > 0) {
+      setMessage(message.slice(0, start - 1) + message.slice(start));
+      setTimeout(() => setCaret(start - 1), 0);
+    } else if (!isBackspace && start < message.length) {
+      setMessage(message.slice(0, start) + message.slice(start + 1));
+      setTimeout(() => setCaret(start), 0);
     }
   };
 
-  // Keydown handler for masking-enabled editing
   const onKeyDown = (e) => {
-    // If user has toggled showMessage (unmasked), allow normal editing - but we still manage state for consistency
     const ta = taRef.current;
     if (!ta) return;
-    const selStart = ta.selectionStart;
-    const selEnd = ta.selectionEnd;
 
-    // Handle printable characters (single-char)
+    const start = ta.selectionStart;
+    const end = ta.selectionEnd;
+
     if (!e.ctrlKey && !e.metaKey && !e.altKey && e.key.length === 1) {
       e.preventDefault();
-      insertAt(e.key, selStart, selEnd);
-      return;
-    }
-
-    // Backspace
-    if (e.key === "Backspace") {
+      insertAt(e.key, start, end);
+    } else if (e.key === "Backspace") {
       e.preventDefault();
-      removeAt(true, selStart, selEnd);
-      return;
-    }
-
-    // Delete
-    if (e.key === "Delete") {
+      removeAt(true, start, end);
+    } else if (e.key === "Delete") {
       e.preventDefault();
-      removeAt(false, selStart, selEnd);
-      return;
-    }
-
-    // Enter -> insert newline
-    if (e.key === "Enter") {
+      removeAt(false, start, end);
+    } else if (e.key === "Enter") {
       e.preventDefault();
-      insertAt("\n", selStart, selEnd);
-      return;
+      insertAt("\n", start, end);
     }
-
-    // Arrow keys, Home/End, Tab, etc -> allow native behavior
-    // Nothing else to intercept
   };
 
-  // Paste handler
   const onPaste = (e) => {
     e.preventDefault();
     const ta = taRef.current;
     if (!ta) return;
-    const pasteText = (e.clipboardData || window.clipboardData).getData("text") || "";
-    const selStart = ta.selectionStart;
-    const selEnd = ta.selectionEnd;
-    if (!pasteText) return;
-    insertAt(pasteText, selStart, selEnd);
+
+    const pasteText =
+      (e.clipboardData || window.clipboardData).getData("text") || "";
+
+    insertAt(pasteText, ta.selectionStart, ta.selectionEnd);
   };
 
-  // If showMessage is ON, allow normal onChange to replace message fully (useful when user wants full edit)
   const onChangeWhenShown = (e) => {
-    // This runs only when showMessage === true (we will wire it conditionally)
     setMessage(e.target.value);
     setRevealedIndex(-1);
   };
 
-  // Encode call
+  // ---------------- ENCODE ----------------
   const handleEncode = async () => {
+    // 🔐 LOGIN REDIRECT
+    if (!isLoggedIn()) {
+      setTimeout(() => navigate("/login"), 800);
+      return;
+    }
+
     if (!file || !message || !password) {
       setError("Please upload an image, enter a message, and provide a password.");
       return;
@@ -224,28 +190,32 @@ function Encode() {
 
     try {
       const response = await axios.post("/api/stego/encode", formData, {
-        responseType: "blob"
+        responseType: "blob",
       });
-      const stegoURL = URL.createObjectURL(response.data);
-      setEncodedImage(stegoURL);
+      setEncodedImage(URL.createObjectURL(response.data));
     } catch (err) {
-      console.error(err);
-      const detail = err?.response?.data?.detail || err.message || "Encoding failed!";
-      setError(detail);
+      setError(
+        err?.response?.data?.detail ||
+          err.message ||
+          "Encoding failed!"
+      );
       setEncodedImage(null);
     } finally {
       setLoading(false);
     }
   };
 
+  // ---------------- UI ----------------
   return (
     <>
       <LoadingOverlay show={loading} message="Encoding..." />
+
       <div className="encode-container">
         <h2>Encode Message</h2>
 
         <div className="encode-form">
           <label>Upload Image (JPG/JPEG)</label>
+
           <div className="upload-box">
             <label className="upload-btn">
               Choose Image
@@ -262,8 +232,6 @@ function Encode() {
 
           <label>Secret Message</label>
           <div className="input-wrapper textarea-wrapper">
-            {/* When showMessage is true we bind normal onChange so full editing is available.
-                When showMessage is false we intercept keydown/paste to update real message (so asterisks remain). */}
             <textarea
               ref={taRef}
               placeholder="Enter the message you want to hide..."
@@ -277,7 +245,6 @@ function Encode() {
               className="toggle-eye"
               title={showMessage ? "Hide message" : "Show message"}
               onClick={() => {
-                // toggling - when going from hidden->show, reveal full text
                 setShowMessage((s) => !s);
                 setRevealedIndex(-1);
               }}
@@ -315,8 +282,7 @@ function Encode() {
           <div className="result-section">
             <h3>Stego Image (Encoded)</h3>
             <img src={encodedImage} className="stego-preview" alt="Encoded" />
-            <br />
-            <br />
+            <br /><br />
             <a href={encodedImage} download={downloadName}>
               <button className="download-button">Download Image</button>
             </a>

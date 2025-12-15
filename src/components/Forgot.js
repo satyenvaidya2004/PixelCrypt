@@ -10,20 +10,43 @@ export default function Forgot() {
 
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const isValidEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+  // --------------------------------------------------
+  // SEND OTP FOR PASSWORD RESET
+  // --------------------------------------------------
   const handleForgot = async (e) => {
     e.preventDefault();
 
-    if (!isValidEmail(email)) return setMsg("Enter a valid email.");
+    setMsg(null);
+
+    if (!isValidEmail(email)) {
+      return setMsg("Enter a valid email address.");
+    }
 
     try {
+      setLoading(true);
+
+      // 🔐 Sends OTP (backend does NOT reveal user existence)
       await forgot(email);
-      setMsg("If this email exists, a reset link is sent.");
+
+      // 👉 Redirect to Reset Password (OTP + new password)
+      navigate("/reset-password", {
+        state: { email }
+      });
+
     } catch (err) {
-      setMsg(err.message || "Something went wrong");
+      const backendMessage =
+        err?.response?.data?.detail ||
+        err?.response?.data?.message ||
+        "Failed to send OTP. Please try again.";
+    
+      setMsg(backendMessage);    
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -44,8 +67,12 @@ export default function Forgot() {
           />
         </div>
 
-        <button type="submit" className="forgot-btn">
-          Send Reset Link
+        <button
+          type="submit"
+          className="forgot-btn"
+          disabled={loading}
+        >
+          {loading ? "Sending OTP..." : "Send OTP"}
         </button>
 
         {msg && <div className="forgot-msg">{msg}</div>}

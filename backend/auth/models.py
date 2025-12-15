@@ -12,3 +12,14 @@ class LoginModel(BaseModel):
 
 class ForgotModel(BaseModel):
     email: EmailStr
+
+class VerifyOTPModel(BaseModel):
+    name: str | None = None
+    email: EmailStr
+    password: str | None = None
+    otp: str
+
+class ResetPasswordModel(BaseModel):
+    email: EmailStr
+    otp: str
+    new_password: str
