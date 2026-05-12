@@ -6,9 +6,9 @@ from torch.utils.data import DataLoader, Dataset
 from PIL import Image
 import numpy as np
 
-from backend.ml.cnn_model import StegoCNN, CNN_NUM_CLASSES, CNN_INPUT_SIZE
-from backend.ml.srm import apply_srm
-from backend.ml.utils import to_tensor_chw
+from ml.cnn_model import StegoCNN, CNN_NUM_CLASSES, CNN_INPUT_SIZE
+from ml.srm import apply_srm
+from ml.utils import to_tensor_chw
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATASETS_DIR = BASE_DIR / "dataset"
