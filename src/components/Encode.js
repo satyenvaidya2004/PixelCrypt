@@ -146,7 +146,7 @@ function Encode() {
     formData.append("original_s3_key", s3Key);
 
     try {
-      const response = await axios.post("/api/stego/encode", formData);
+      const response = await api.post("/api/stego/encode", formData);
       if (response.data.s3_url) {
         setEncodedImage(response.data.s3_url);
         setEncodedS3Key(response.data.encoded_s3_key);
