@@ -5,11 +5,11 @@ import os
 import random
 from datetime import datetime, timedelta
 
-from backend.auth.utils import decode_token, get_current_user
-from backend.auth.database import encode_history, decode_history, otp_collection
-from backend.crypto.aes import decrypt_message, encrypt_message
-from backend.services.s3_service import generate_presigned_url
-from backend.services.mail_service import send_otp_email
+from auth.utils import decode_token, get_current_user
+from auth.database import encode_history, decode_history, otp_collection
+from crypto.aes import decrypt_message, encrypt_message
+from services.s3_service import generate_presigned_url
+from services.mail_service import send_otp_email
 
 router = APIRouter()
 
@@ -31,7 +31,7 @@ def stream_image(
     # Verify token
     decode_token(token)
     
-    from backend.services.s3_service import get_from_s3
+    from services.s3_service import get_from_s3
     from fastapi.responses import Response
 
     try:
