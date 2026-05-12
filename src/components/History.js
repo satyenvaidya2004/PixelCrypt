@@ -12,7 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import AuthContext from "./AuthContext";
 import "../styles/History.css";
 
-const API_BASE = process.env.REACT_APP_API_BASE || "http://127.0.0.1:8000";
+const API_BASE = process.env.REACT_APP_API_BASE || "https://pixelcrypt-backend.onrender.com";
 
 export default function History() {
   const { token, user } = useContext(AuthContext);
