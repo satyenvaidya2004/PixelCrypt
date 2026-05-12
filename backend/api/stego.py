@@ -9,12 +9,12 @@ from bson import ObjectId
 from fastapi import APIRouter, UploadFile, File, Form, Depends, HTTPException, Query
 from fastapi.responses import StreamingResponse
 
-from backend.auth.utils import get_current_user, decode_token
-from backend.auth.database import encode_history, decode_history
-from backend.services.stego_service import encode_image, decode_image
-from backend.services.s3_service import upload_to_s3, generate_presigned_url
-from backend.crypto.aes import encrypt_message
-from backend.utils.metrics import calculate_mse, calculate_psnr
+from auth.utils import get_current_user, decode_token
+from auth.database import encode_history, decode_history
+from services.stego_service import encode_image, decode_image
+from services.s3_service import upload_to_s3, generate_presigned_url
+from crypto.aes import encrypt_message
+from utils.metrics import calculate_mse, calculate_psnr
 import uuid
 
 router = APIRouter()
@@ -114,7 +114,7 @@ async def download_image(
     # Verify token from query param
     decode_token(token)
     
-    from backend.services.s3_service import get_from_s3
+    from services.s3_service import get_from_s3
     from fastapi.responses import Response
 
     try:
