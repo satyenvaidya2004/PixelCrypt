@@ -1,26 +1,26 @@
 from fastapi import APIRouter, HTTPException, Depends, Request
 from datetime import datetime
 
-from backend.auth.database import (
+from auth.database import (
     users_collection,
     otp_collection,
 )
-from backend.auth.models import (
+from auth.models import (
     RegisterModel,
     LoginModel,
     ForgotModel,
     VerifyOTPModel,
     ResetPasswordModel,
 )
-from backend.auth.utils import (
+from auth.utils import (
     hash_password,
     verify_password,
     create_token,
     get_current_user,
     clean_user,
 )
-from backend.auth.otp_service import generate_otp, expiry_time
-from backend.auth.email_service import send_otp_email
+from auth.otp_service import generate_otp, expiry_time
+from auth.email_service import send_otp_email
 
 router = APIRouter()
 
@@ -187,8 +187,8 @@ def logout(current_user=Depends(get_current_user)):
 # ================================
 from fastapi import Depends
 from bson import ObjectId
-from backend.auth.utils import get_current_user
-from backend.auth.database import users_collection
+from auth.utils import get_current_user
+from auth.database import users_collection
 
 
 # ---------------- GET ALL USERS (ADMIN ONLY) ----------------
@@ -197,7 +197,7 @@ def get_all_users(current_user=Depends(get_current_user)):
     if current_user["role"] != "admin":
         raise HTTPException(status_code=403, detail="Admin access only")
 
-    from backend.auth.database import encode_history, decode_history
+    from auth.database import encode_history, decode_history
 
     users = []
     for u in users_collection.find({"role": "user"}):
