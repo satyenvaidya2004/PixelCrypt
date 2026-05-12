@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, Depends
-from backend.auth.utils import get_current_user
-from backend.services.s3_service import upload_to_s3, generate_presigned_url
+from auth.utils import get_current_user
+from services.s3_service import upload_to_s3, generate_presigned_url
 import uuid
 
 router = APIRouter()
