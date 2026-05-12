@@ -21,7 +21,7 @@ import { BsArrowRightShort, BsArrowDownShort } from "react-icons/bs";
 
 const ALLOWED_EXTENSIONS = ["jpg", "jpeg"];
 const MAX_FILE_SIZE_MB = 10;
-const API_BASE = process.env.REACT_APP_API_BASE || "http://127.0.0.1:8000";
+const API_BASE = process.env.REACT_APP_API_BASE || "https://pixelcrypt-backend.onrender.com";
 
 function Encode() {
   const navigate = useNavigate();
