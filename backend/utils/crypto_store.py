@@ -1,5 +1,5 @@
 # backend/utils/crypto_store.py
-from backend.crypto.aes import encrypt_message, decrypt_message
+from crypto.aes import encrypt_message, decrypt_message
 
 def encrypt_store(text: str, master_key: str) -> bytes:
     return encrypt_message(text, master_key)
