@@ -2,8 +2,8 @@ from io import BytesIO
 from fastapi import HTTPException
 from PIL import Image
 from datetime import datetime
-from backend.crypto.aes import encrypt_message, decrypt_message
-from backend.ml.dct import dct_embed, dct_extract
+from crypto.aes import encrypt_message, decrypt_message
+from ml.dct import dct_embed, dct_extract
 
 
 def _bytes_to_bits(data: bytes) -> str:
