@@ -81,7 +81,7 @@ function Encode() {
       try {
         const formData = new FormData();
         formData.append("file", img);
-        const res = await axios.post("/api/upload/image?prefix=original", formData);
+        const res = await api.post("/api/upload/image?prefix=original", formData);
         setS3Key(res.data.s3_key);
         if (res.data.s3_url) setPreviewImage(res.data.s3_url);
       } catch (err) {
