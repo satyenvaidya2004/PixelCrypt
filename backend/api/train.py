@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from backend.services.train_service import train_cnn_model
+from services.train_service import train_cnn_model
 
 
 router = APIRouter()
