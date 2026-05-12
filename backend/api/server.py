@@ -30,6 +30,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "https://pixelcrypt.netlify.app",
+        "https://pixelcrypt.netlify.app/",
+        "https://pixelcrypt.netlify.app".rstrip("/"),
     ],
     allow_credentials=True,
     allow_methods=["*"],
