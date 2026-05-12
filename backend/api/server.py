@@ -6,10 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from auth.routes import router as auth_router
 
 # optional routers (stego/train). Import safely so server still starts if they fail
-try:
-    from api.stego import router as stego_router
-except Exception:
-    stego_router = None
+from api.stego import router as stego_router
 
 try:
     from api.train import router as train_router
