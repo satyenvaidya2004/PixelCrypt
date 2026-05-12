@@ -1,0 +1,142 @@
+/* src/styles/OtpModal.css */
+.otp-modal-card {
+    position: relative;
+    background: rgba(16, 18, 27, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(0, 229, 255, 0.1);
+    overflow: hidden;
+    animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.otp-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 229, 255, 0.1);
+    border: 2px solid rgba(0, 229, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.8rem;
+    color: #00e5ff;
+    animation: pulseIconCyan 2s infinite;
+}
+
+@keyframes pulseIconCyan {
+    0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 229, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
+}
+
+.modal-header p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.highlight-email {
+    color: #00e5ff;
+    font-weight: 500;
+}
+
+.otp-inputs {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 2rem 0;
+}
+
+.otp-inputs input {
+    width: 50px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.otp-inputs input:focus {
+    outline: none;
+    border-color: #00e5ff;
+    background: rgba(0, 229, 255, 0.05);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.otp-error-msg {
+    color: #ff2e63;
+    background: rgba(255, 46, 99, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 46, 99, 0.2);
+}
+
+.otp-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-btn.cancel {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.modal-btn.verify {
+    background: linear-gradient(135deg, #00e5ff, #00b8d4);
+    border: none;
+    color: #0b1120;
+    box-shadow: 0 10px 20px rgba(0, 229, 255, 0.3);
+}
+
+.modal-btn.verify:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px rgba(0, 229, 255, 0.4);
+    filter: brightness(1.1);
+}
+
+.otp-footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.resend-link {
+    color: #00e5ff;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.resend-link:hover {
+    color: #fff;
+}
+
+@keyframes modalSlideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}

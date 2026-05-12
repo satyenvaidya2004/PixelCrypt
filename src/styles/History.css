@@ -1,0 +1,628 @@
+/* src/styles/History.css */
+:root {
+  --bg-dark: #060910;
+  --bg-card: rgba(13, 17, 28, 0.7);
+  --accent-blue: #00d2ff;
+  --accent-purple: #9d50bb;
+  --accent-green: #00f260;
+  --accent-pink: #ff0080;
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --sidebar-width: 260px;
+}
+
+.history-page-root {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Sidebar Styling */
+.history-sidebar {
+  width: var(--sidebar-width);
+  background: rgba(10, 14, 23, 0.95);
+  border-right: 1px solid var(--glass-border);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+}
+
+.hist-sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hist-sidebar-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  padding-left: 0.75rem;
+}
+
+.hist-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hist-sidebar-item:hover,
+.hist-sidebar-item.active {
+  background: rgba(0, 210, 255, 0.1);
+  color: var(--accent-blue);
+}
+
+.hist-sidebar-item.active {
+  background: linear-gradient(90deg, rgba(0, 210, 255, 0.2) 0%, rgba(157, 80, 187, 0.2) 100%);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  color: #fff;
+}
+
+.hist-sidebar-item svg {
+  font-size: 1.2rem;
+}
+
+.hist-sidebar-promo {
+  margin-top: auto;
+  background: linear-gradient(135deg, rgba(0, 210, 255, 0.1) 0%, rgba(157, 80, 187, 0.1) 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hist-sidebar-promo::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hist-promo-icon {
+  font-size: 2.5rem;
+  color: var(--accent-blue);
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.5));
+}
+
+.hist-promo-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.hist-promo-text {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Main Content Area */
+.history-main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 2rem 3rem;
+  max-width: 1600px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.hist-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.history-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(157, 80, 187, 0.1);
+  border: 1px solid rgba(157, 80, 187, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-purple);
+  font-size: 1.5rem;
+}
+
+.history-title-group h1 {
+  font-size: 1.75rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.history-title-group p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+/* Stats Cards */
+.hist-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.hist-stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 1rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.hist-stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.hist-stat-card.blue .hist-stat-icon {
+  background: rgba(0, 210, 255, 0.1);
+  color: var(--accent-blue);
+  border: 1px solid rgba(0, 210, 255, 0.2);
+}
+
+.hist-stat-card.purple .hist-stat-icon {
+  background: rgba(157, 80, 187, 0.1);
+  color: var(--accent-purple);
+  border: 1px solid rgba(157, 80, 187, 0.2);
+}
+
+.hist-stat-card.green .hist-stat-icon {
+  background: rgba(0, 242, 96, 0.1);
+  color: var(--accent-green);
+  border: 1px solid rgba(0, 242, 96, 0.2);
+}
+
+.hist-stat-card.pink .hist-stat-icon {
+  background: rgba(255, 0, 128, 0.1);
+  color: var(--accent-pink);
+  border: 1px solid rgba(255, 0, 128, 0.2);
+}
+
+.hist-stat-info {
+  flex: 1;
+}
+
+.hist-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.hist-stat-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+}
+
+.hist-stat-chart {
+  width: 60px;
+  height: 30px;
+}
+
+/* Filters & Controls */
+.hist-controls-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.hist-filters-group {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+}
+
+.hist-filter-select,
+.hist-search-input,
+.hist-datepicker-input {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: var(--text-primary);
+  padding: 0.7rem 1.2rem;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.hist-search-wrapper {
+  position: relative;
+  flex: 1;
+  max-width: 350px;
+}
+
+.hist-search-input {
+  width: 100%;
+  padding-left: 2.5rem;
+}
+
+.hist-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  z-index: 2;
+}
+
+/* DatePicker Styling Overrides */
+.hist-date-filters {
+  display: flex;
+  align-items: center;
+}
+
+.hist-datepicker-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.hist-date-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hist-datepicker-input {
+  width: 260px;
+  cursor: pointer;
+  padding-left: 2.5rem !important;
+}
+
+/* react-datepicker specific classes */
+.react-datepicker-popper {
+  z-index: 1000 !important;
+}
+
+.react-datepicker {
+  background-color: #0d111c !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 16px !important;
+  font-family: 'Inter', sans-serif !important;
+  color: #fff !important;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.react-datepicker__header {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+  padding-top: 15px !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker-time__header {
+  color: #fff !important;
+}
+
+.react-datepicker__day {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.react-datepicker__day:hover {
+  background-color: rgba(0, 210, 255, 0.2) !important;
+  border-radius: 8px !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-range,
+.react-datepicker__day--in-selecting-range {
+  background-color: var(--accent-blue) !important;
+  color: #000 !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: rgba(157, 80, 187, 0.3) !important;
+}
+
+.react-datepicker__navigation--previous {
+  border-right-color: #ccc !important;
+}
+
+.react-datepicker__navigation--next {
+  border-left-color: #ccc !important;
+}
+
+.hist-filter-select {
+  min-width: 160px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(148, 163, 184, 0.8)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.2em;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.hist-filter-select:hover,
+.hist-search-input:hover,
+.hist-datepicker-input:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hist-filter-select:focus,
+.hist-search-input:focus,
+.hist-datepicker-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hist-filter-select option {
+  background-color: #0d111c;
+  color: #fff;
+  padding: 10px;
+}
+
+/* Table Styling */
+.history-table-container {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.history-table th {
+  padding: 1.25rem 1.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--glass-border);
+  font-weight: 600;
+}
+
+.history-table td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--glass-border);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.history-table tr:last-child td {
+  border-bottom: none;
+}
+
+.hist-file-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--accent-blue);
+}
+
+.hist-file-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.hist-file-name {
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.hist-badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hist-badge.encoded {
+  background: rgba(0, 210, 255, 0.1);
+  color: var(--accent-blue);
+}
+
+.hist-badge.decoded {
+  background: rgba(157, 80, 187, 0.1);
+  color: var(--accent-purple);
+}
+
+.hist-badge.success {
+  background: rgba(0, 242, 96, 0.1);
+  color: var(--accent-green);
+}
+
+.hist-badge.failed {
+  background: rgba(255, 0, 128, 0.1);
+  color: var(--accent-pink);
+}
+
+.hist-message-preview {
+  color: var(--text-secondary);
+  font-style: italic;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hist-date-time {
+  line-height: 1.4;
+}
+
+.hist-date {
+  font-weight: 500;
+}
+
+.hist-time {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Pagination */
+.hist-pagination-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.hist-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hist-page-num {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.hist-page-num.active {
+  background: var(--accent-blue);
+  color: white;
+  font-weight: 600;
+}
+
+.hist-page-num.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.hist-page-num:not(.active):not(.disabled):hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.hist-rows-per-page {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hist-rows-select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 0.3rem 1.8rem 0.3rem 0.6rem;
+  font-size: 0.85rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(148, 163, 184, 0.8)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1em;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.hist-rows-select:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hist-rows-select:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.1);
+}
+
+.hist-rows-select option {
+  background-color: #0d111c;
+  color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .hist-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .history-sidebar {
+    width: 80px;
+    padding: 2rem 0.75rem;
+  }
+
+  .hist-sidebar-label,
+  .hist-sidebar-item span,
+  .hist-sidebar-promo {
+    display: none;
+  }
+
+  .history-main {
+    margin-left: 80px;
+  }
+
+  .hist-sidebar-item {
+    justify-content: center;
+    padding: 1rem;
+  }
+}

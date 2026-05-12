@@ -1,0 +1,448 @@
+/* =============================================
+   About Page — PixelCrypt
+   Matching the StegoShield reference design
+   ============================================= */
+
+.about-page {
+  min-height: 100vh;
+  padding: 40px 0 0;
+  font-family: 'Outfit', sans-serif;
+  color: #eef9ff;
+  position: relative;
+  z-index: 1;
+}
+
+.about-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Section label ── */
+.section-label {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: var(--text-muted, #8899aa);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.section-label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 36px;
+  height: 2px;
+  background: linear-gradient(90deg, #00e5ff, #8b5cf6);
+  border-radius: 2px;
+}
+
+/* ── Top 3-column grid ── */
+.about-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+
+/* ══════════ LEFT COLUMN ══════════ */
+.about-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.about-heading {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 20px 0;
+  letter-spacing: 0.5px;
+}
+
+.gradient-cyan {
+  background: linear-gradient(90deg, #00e5ff, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-pink {
+  background: linear-gradient(90deg, #d946ef, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-desc {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: #9ab0c8;
+  margin-bottom: 28px;
+}
+
+/* Mission card */
+.mission-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: rgba(0, 229, 255, 0.04);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.mission-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #00e5ff;
+}
+
+.mission-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #00e5ff;
+  margin: 0 0 6px 0;
+}
+
+.mission-text {
+  font-size: 0.82rem;
+  color: #8899aa;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Quote */
+.quote-block {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px 0 0;
+}
+
+.quote-mark {
+  font-size: 2rem;
+  color: #d946ef;
+  flex-shrink: 0;
+  margin-top: -4px;
+}
+
+.quote-block p {
+  font-size: 0.9rem;
+  color: #b388ff;
+  line-height: 1.7;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ══════════ CENTER COLUMN ══════════ */
+.about-center-wrapper {
+  flex: 1;
+  padding: 1px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(47, 214, 255, 0.8), rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.05) 60%, rgba(255, 45, 198, 0.8));
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+}
+
+.about-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0px;
+  background: #0b1120;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.hero-image-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.about-hero-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.what-is-card {
+  background: rgba(5, 10, 26, 0.7);
+  backdrop-filter: blur(12px);
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+  padding: 24px;
+}
+
+.what-is-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 12px 0;
+  color: #fff;
+}
+
+.what-is-desc {
+  font-size: 0.85rem;
+  color: #8899aa;
+  line-height: 1.7;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+.feature-tags {
+  display: flex;
+  justify-content: space-around;
+  gap: 12px;
+}
+
+.feature-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: #9ab0c8;
+  line-height: 1.4;
+}
+
+.tag-icon {
+  font-size: 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  padding: 8px;
+  box-sizing: content-box;
+}
+
+.tag-icon.cyan {
+  color: #00e5ff;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+}
+
+.tag-icon.pink {
+  color: #d946ef;
+  border: 1px solid rgba(217, 70, 239, 0.3);
+}
+
+.tag-icon.purple {
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+/* ══════════ RIGHT COLUMN ══════════ */
+.about-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.why-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.why-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: rgba(5, 10, 26, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 14px;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.why-item:hover {
+  border-color: rgba(0, 229, 255, 0.2);
+  transform: translateX(4px);
+}
+
+.why-icon-wrap {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.why-icon-wrap.cyan {
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  color: #00e5ff;
+}
+
+.why-icon-wrap.purple {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  color: #8b5cf6;
+}
+
+.why-icon-wrap.pink {
+  background: rgba(217, 70, 239, 0.1);
+  border: 1px solid rgba(217, 70, 239, 0.25);
+  color: #d946ef;
+}
+
+.why-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.why-title.cyan {
+  color: #00e5ff;
+}
+
+.why-title.purple {
+  color: #8b5cf6;
+}
+
+.why-title.pink {
+  color: #d946ef;
+}
+
+.why-desc {
+  font-size: 0.78rem;
+  color: #8899aa;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ══════════ STATS BAR ══════════ */
+.stats-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(5, 10, 26, 0.8);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 20px 20px 0 0;
+  padding: 28px 48px;
+  gap: 12px;
+  box-shadow: 0 -4px 30px rgba(0, 229, 255, 0.05);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 40px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.stat-icon {
+  font-size: 1.6rem;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: #8899aa;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.stat-label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 2px;
+  background: linear-gradient(90deg, #00e5ff, #8b5cf6);
+  border-radius: 2px;
+}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media (max-width: 1100px) {
+  .about-top-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about-right {
+    grid-column: span 2;
+  }
+
+  .why-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-top-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-right {
+    grid-column: span 1;
+  }
+
+  .why-list {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-bar {
+    flex-wrap: wrap;
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .stat-item {
+    flex: 0 0 calc(50% - 12px);
+  }
+
+  .stat-item::after {
+    display: none;
+  }
+
+  .about-heading {
+    font-size: 2rem;
+  }
+}

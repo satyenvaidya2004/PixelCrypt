@@ -1,0 +1,48 @@
+/* Scrollbar Width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Background Track */
+::-webkit-scrollbar-track {
+    background: rgba(10, 15, 26, 0.6);
+    border-radius: 12px;
+    margin: 4px 0;
+}
+
+/* Gradient Thumb */
+::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+
+    /* Horizontal gradient → always fully visible */
+    background: linear-gradient(180deg,
+    #2FD6FF,
+    #7A6BF1,
+    #FF2DC6);
+
+    /* Animation settings */
+    background-size: 300% 100%;
+    animation: scrollGradient 4s linear infinite;
+}
+
+/* Hover effect */
+::-webkit-scrollbar-thumb:hover {
+    background-size: 400% 100%;
+    transform: scaleX(1.05);
+}
+
+/* Animation keyframes */
+@keyframes scrollGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

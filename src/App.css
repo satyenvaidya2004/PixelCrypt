@@ -1,0 +1,72 @@
+:root {
+  --primary-cyan: #00ffff;
+  --primary-purple: #7A6BF1;
+  --primary-pink: #FF2DC6;
+  --neon-green: #00ff96;
+  --bg-dark: #050A1A;
+  --card-bg: rgba(8, 14, 30, 0.75);
+  --text-white: #ffffff;
+  --text-dim: #8899aa;
+  --text-muted: #667788;
+  --error-red: #ff6b6b;
+  --accent-cyan-glow: rgba(47, 214, 255, 0.3);
+  --accent-cyan-soft: rgba(47, 214, 255, 0.15);
+}
+
+.App {
+  min-height: 100vh;
+  position: relative;
+  background: #030616;
+  font-family: 'Outfit', sans-serif;
+  color: var(--text-white);
+  overflow-x: hidden;
+}
+
+/* make sure UI sits above the rain canvas */
+.App>*:not(canvas) {
+  position: relative;
+  /* z-index: 1; */
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* .App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+} */
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= ADMIN RESTRICTIONS ================= */
+/* Hide Overview and History sections in the sidebar for Admin */
+body.admin-mode .hist-sidebar-section:nth-child(1),
+body.admin-mode .hist-sidebar-section:nth-child(2) {
+  display: none !important;
+}

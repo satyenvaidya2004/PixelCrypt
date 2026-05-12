@@ -1,0 +1,76 @@
+/* FULL SCREEN OVERLAY */
+.global-loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15); /* light transparent dark */
+    backdrop-filter: blur(3px);      /* soft blur (not too much) */
+    -webkit-backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+  }
+  
+  /* CENTER WRAPPER */
+  .loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  /* DOT LOADER WRAPPER */
+  .circular-dot-loader {
+    position: relative;
+    width: 85px;
+    height: 85px;
+    animation: rotateLoader 1.4s linear infinite;
+  }
+  
+  /* COLORS TO BE USED */
+  :root {
+    --c1: #2FD6FF;
+    --c2: #7A6BF1;
+    --c3: #FF2DC6;
+  }
+  
+  /* EACH DOT */
+  .circular-dot-loader .dot {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    animation: pulse 1s ease-in-out infinite alternate;
+  }
+  
+  /* EIGHT DOT POSITIONS AROUND CIRCLE */
+  .circular-dot-loader .dot:nth-child(1) { top: 0%;   left: 50%; transform: translate(-50%, 0);    background: var(--c1); }
+  .circular-dot-loader .dot:nth-child(2) { top: 15%;  left: 85%; transform: translate(-50%, -50%); background: var(--c2); }
+  .circular-dot-loader .dot:nth-child(3) { top: 50%;  left: 100%; transform: translate(-50%, -50%); background: var(--c3); }
+  .circular-dot-loader .dot:nth-child(4) { top: 85%;  left: 85%; transform: translate(-50%, -50%); background: var(--c1); }
+  .circular-dot-loader .dot:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -100%); background: var(--c2); }
+  .circular-dot-loader .dot:nth-child(6) { top: 85%;  left: 15%; transform: translate(-50%, -50%); background: var(--c3); }
+  .circular-dot-loader .dot:nth-child(7) { top: 50%;  left: 0%;  transform: translate(0, -50%);     background: var(--c1); }
+  .circular-dot-loader .dot:nth-child(8) { top: 15%;  left: 15%; transform: translate(-50%, -50%); background: var(--c2); }
+  
+  /* ROTATION ANIMATION */
+  @keyframes rotateLoader {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* DOT PULSE (breathing effect) */
+  @keyframes pulse {
+    0%   { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.65); opacity: 0.65; }
+  }
+  
+  /* Loader text */
+  .loader-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    font-family: "Orbitron", sans-serif;
+    text-shadow: 0 0 8px rgba(0,0,0,0.4);
+  }
+  
