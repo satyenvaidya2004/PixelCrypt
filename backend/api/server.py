@@ -27,11 +27,15 @@ app = FastAPI(title="PixelCrypt API", version="1.0")
 # CORS for dev (you can tighten allow_origins for prod)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://pixelcrypt.netlify.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # mount routers
 app.include_router(auth_router, prefix="/api/auth", tags=["Auth"])
