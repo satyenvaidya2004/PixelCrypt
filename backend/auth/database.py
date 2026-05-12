@@ -17,11 +17,15 @@ ENV_PATH = PROJECT_ROOT / ".env"
 if not ENV_PATH.exists():
     raise FileNotFoundError(f".env not found at {ENV_PATH}")
 
-load_dotenv(ENV_PATH)
+# load_dotenv(ENV_PATH)
+
+# MONGO_URL = os.getenv("MONGO_URL")
+# if not MONGO_URL:
+#     raise RuntimeError("MONGO_URL missing in .env")
+
+load_dotenv()
 
 MONGO_URL = os.getenv("MONGO_URL")
-if not MONGO_URL:
-    raise RuntimeError("MONGO_URL missing in .env")
 
 # -------------------------------------------------
 # MONGO CLIENT (ATLAS SAFE CONFIG)
