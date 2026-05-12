@@ -2,7 +2,6 @@
 
 import os
 import threading
-# from pathlib import Path
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
@@ -11,18 +10,6 @@ from pymongo.errors import ServerSelectionTimeoutError
 # -------------------------------------------------
 # LOAD ENV
 # -------------------------------------------------
-# PROJECT_ROOT = Path(__file__).resolve().parents[2]
-# ENV_PATH = PROJECT_ROOT / ".env"
-
-# if not ENV_PATH.exists():
-#     raise FileNotFoundError(f".env not found at {ENV_PATH}")
-
-# load_dotenv(ENV_PATH)
-
-# MONGO_URL = os.getenv("MONGO_URL")
-# if not MONGO_URL:
-#     raise RuntimeError("MONGO_URL missing in .env")
-
 load_dotenv()
 
 MONGO_URL = os.getenv("MONGO_URL")
