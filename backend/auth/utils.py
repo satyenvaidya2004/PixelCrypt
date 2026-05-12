@@ -9,7 +9,7 @@ from fastapi import HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from passlib.hash import pbkdf2_sha256
 
-from backend.auth.database import users_collection
+from auth.database import users_collection
 
 # -----------------------------------------------------------
 # JWT CONFIG
