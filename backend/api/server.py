@@ -3,24 +3,24 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # core routers
-from backend.auth.routes import router as auth_router
+from auth.routes import router as auth_router
 
 # optional routers (stego/train). Import safely so server still starts if they fail
 try:
-    from backend.api.stego import router as stego_router
+    from api.stego import router as stego_router
 except Exception:
     stego_router = None
 
 try:
-    from backend.api.train import router as train_router
+    from api.train import router as train_router
 except Exception:
     train_router = None
 
 # history router (must exist in backend/api/history.py)
-from backend.api.history import router as history_router
+from api.history import router as history_router
 
 # upload router
-from backend.api.upload import router as upload_router
+from api.upload import router as upload_router
 
 app = FastAPI(title="PixelCrypt API", version="1.0")
 
